@@ -1,0 +1,6 @@
+CREDITS
+
+sphis_sinco - Main creator
+Godot - Game Engine
+
+YOU - Playing
