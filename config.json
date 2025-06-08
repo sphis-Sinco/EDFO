@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "windows_url": "https://github.com/sphis-Sinco/EDFO/releases/download/1.0/windows-v1.0.zip",
+  "windows_exe": "windows/EDFO.exe",
+  "linux_url": "https://github.com/sphis-Sinco/EDFO/releases/download/1.0/linux-v1.0.zip",
+  "linux_exe": "linux/EDFO.x86_64",
+  "web_url": "https://github.com/sphis-Sinco/EDFO/releases/download/1.0/web-v1.0.zip",
+  "web_exe": "web/index.html"
+}
