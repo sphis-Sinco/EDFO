@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnqvavmjrg2m"]
+
+[ext_resource type="PackedScene" uid="uid://datg3wxlfnig4" path="res://assets/models/pc/scene.gltf" id="1_lrbug"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_lrbug")]
+
+[node name="Plane" parent="Sketchfab_model/b462ac61a74e43db85f1b4fa07188c50_fbx/RootNode" index="1"]
+visible = false
+
+[node name="Plane_BackgroundMaterial_0" parent="Sketchfab_model/b462ac61a74e43db85f1b4fa07188c50_fbx/RootNode/Plane" index="1"]
+visible = false

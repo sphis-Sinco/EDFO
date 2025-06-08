@@ -1,0 +1,445 @@
+[gd_scene load_steps=20 format=3 uid="uid://4pvyiv7lhhy1"]
+
+[ext_resource type="Shader" uid="uid://wdigh3iv84a0" path="res://assets/shaders/pixelation.gdshader" id="1_712wi"]
+[ext_resource type="Script" uid="uid://nbq7olx1ubyx" path="res://assets/scripts/cammovescript.gd" id="2_r76x4"]
+[ext_resource type="Script" uid="uid://c7wq3jpec81us" path="res://assets/scripts/monitorscene_button.gd" id="3_712wi"]
+[ext_resource type="PackedScene" uid="uid://cnqvavmjrg2m" path="res://assets/models/pc/PC.tscn" id="3_spe5c"]
+[ext_resource type="AudioStream" uid="uid://tuvjd05e4nym" path="res://assets/known_command.wav" id="4_bvax4"]
+[ext_resource type="AudioStream" uid="uid://brq4ppokf1edq" path="res://assets/unknown_command.wav" id="5_cdfrg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atnm5"]
+shader = ExtResource("1_712wi")
+shader_parameter/resX = 1024
+shader_parameter/resY = 1024
+shader_parameter/rgb255 = Vector3(0.295, 0.145, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y34c4"]
+albedo_color = Color(0.33, 0.19965, 0.0693, 1)
+
+[sub_resource type="Animation" id="Animation_atnm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.21815)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.10636, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_712wi"]
+resource_name = "Turn around"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.10636, 0, 0), Vector3(-0.106465, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0f5et"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.975, 0, 1.218), Vector3(0, 0, 1.21815)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.106465, -0.171042, 0), Vector3(-0.10636, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_om3u1"]
+_data = {
+&"RESET": SubResource("Animation_atnm5"),
+&"Turn around": SubResource("Animation_712wi"),
+&"move": SubResource("Animation_0f5et")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_om3u1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atnm5"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_uw81b"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_atnm5")
+
+[sub_resource type="Animation" id="Animation_om3u1"]
+resource_name = "Intro"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4995, 0.9995, 1.0495, 1.1495, 1.2987, 1.4985, 1.5385, 1.5995, 1.9647, 1.9995, 2.0495, 2.0995, 2.1495, 2.2995, 2.3495, 2.3595),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+[OVERRIDE] sys/emulation/emulink.dll -> redirected
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+[OVERRIDE] sys/emulation/emulink.dll -> redirected
+[SECURITY] Clearance check: [BYPASS: DEV-BUILD]
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+[OVERRIDE] sys/emulation/emulink.dll -> redirected
+[SECURITY] Clearance check: [BYPASS: DEV-BUILD]
+
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+[OVERRIDE] sys/emulation/emulink.dll -> redirected
+[SECURITY] Clearance check: [BYPASS: DEV-BUILD]
+
+[ERROR] BYPASS CODE EXPIRED
+_", "> OPEN /EDFD/Desktop/ARCADE64.EXE
+[LOG ID: terminal.launch.handler]
+[STATUS] Initializing ARCADE64 system shell...
+[STATUS] Loading graphical modules...
+[INFO] Video Mode: 640x480
+[INFO] Emulated Hardware: SigmaCore A2 (1996 Build)
+[INFO] ROM Loaded: RUSH DEFENSE X: THE ARCADE
+STRIKES BACK
+
+[DEBUG] Unexpected behavior detected.
+[OVERRIDE] sys/emulation/emulink.dll -> redirected
+[SECURITY] Clearance check: [BYPASS: DEV-BUILD]
+
+[ERROR] BYPASS CODE EXPIRED
+[INFO] CLOSING...
+_", "_"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2995, 2.3095, 2.3595),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 12), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../../../G:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 1.05, 1.15, 1.3, 1.5, 1.52, 1.965, 2, 2.05, 2.1, 2.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../../../B:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2bhkf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["_"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../../../G:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../../../B:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bhkf"]
+_data = {
+&"Intro": SubResource("Animation_om3u1"),
+&"RESET": SubResource("Animation_2bhkf")
+}
+
+[sub_resource type="Shortcut" id="Shortcut_atnm5"]
+
+[node name="Monitor" type="Node3D"]
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -10
+offset_left = -704.0
+offset_top = -320.0
+offset_right = 576.0
+offset_bottom = 400.0
+scale = Vector2(10, 10)
+color = Color(0, 0, 0, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_atnm5")
+offset_right = 1280.0
+offset_bottom = 720.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, 0)
+flip_faces = true
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_y34c4")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.994349, 0.10616, 0, -0.10616, 0.994349, 0, 0, 1.21815)
+fov = 40.0
+script = ExtResource("2_r76x4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_om3u1")
+}
+autoplay = "RESET"
+
+[node name="Sketchfab_Scene" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_spe5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.873076, -1.57081)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+transform = Transform3D(0.9, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.085, 0.7, 0.3)
+material_overlay = SubResource("ShaderMaterial_om3u1")
+mesh = SubResource("QuadMesh_uw81b")
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene/MeshInstance3D"]
+transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.485, 0.395, 0.01)
+modulate = Color(0, 1, 0, 1)
+text = "_"
+font_size = 8
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+width = 275.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Sketchfab_Scene/MeshInstance3D/Label3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_2bhkf")
+}
+autoplay = "Intro"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.94295, 0)
+material = SubResource("StandardMaterial3D_y34c4")
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport"]
+visible = false
+offset_left = 384.0
+offset_top = 576.0
+offset_right = 768.0
+offset_bottom = 640.0
+shortcut = SubResource("Shortcut_atnm5")
+text = "Turn around."
+script = ExtResource("3_712wi")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.339395, 0.940644, 0, -0.940644, 0.339395, -0.625086, 3.27829, -0.980647)
+light_energy = 1.91
+spot_range = 6.165
+spot_attenuation = -0.5
+spot_angle_attenuation = 9.84916
+
+[node name="G" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bvax4")
+
+[node name="B" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_cdfrg")
+
+[connection signal="animation_finished" from="SubViewportContainer/SubViewport/Camera3D/AnimationPlayer" to="SubViewportContainer/SubViewport/Button" method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/Button" to="SubViewportContainer/SubViewport/Button" method="_on_pressed"]

@@ -2,4 +2,5 @@
 > The first app you see is an arcade emulator|3
 > You remember someone making it awhile ago, 2009?|3
 > You open it|3
+> The terminal opens|3
 arcade.open

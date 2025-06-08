@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="uid://bllcpmqp32tjd"
 
+[autoload]
+
+InteractableNpc="*res://assets/scripts/interactable_npc.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -34,7 +38,7 @@ enabled=PackedStringArray()
 
 [gui]
 
-theme/custom_font="uid://bawj1j1ladduj"
+theme/custom_font="uid://c70o1kgku0ktr"
 
 [rendering]
 

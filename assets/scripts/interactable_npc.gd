@@ -43,6 +43,7 @@ func _input(event):
 				rich_text_label.text = ''
 				closeDialogue()
 				print("switch to emulator")
+				get_tree().change_scene_to_file("res://scenes/monitor.tscn")
 		else:
 			closeDialogue()
 			
