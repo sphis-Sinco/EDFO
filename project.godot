@@ -15,7 +15,7 @@ config/version="1.0.0"
 run/main_scene="uid://dol5xo0ak6j86"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+config/icon="uid://bllcpmqp32tjd"
 
 [display]
 

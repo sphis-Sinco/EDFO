@@ -5,15 +5,18 @@ extends Area2D
 @export var area_2d : Area2D
 @onready var typing_sound = $"../AudioStreamPlayer2D"
 
-@export var dialogue_list = [
+var dialogue_list = [
 	["dialogue", 3]
 ]
 var dialogue_index = -1
+@export var dialogue_path = 'sequence_1'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("area_entered", _on_area_entered)
 	connect("area_exited", _on_area_exited)
+	dialogue_list = load_from_file( 'assets/dialogue/'+dialogue_path+'.txt').split('\n')
+	print_rich(dialogue_list)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -24,16 +27,31 @@ var player_interacting = false
 func _input(event):
 	if event.is_action_released("ui_accept") and player_interacting:
 		dialogue_index += 1
-		if not dialogue_index == dialogue_list.size():
+		if not dialogue_index == dialogue_list.size() - 1:
 			textbar.visible = true
-			rich_text_label.text = dialogue_list[dialogue_index][0]
+			rich_text_label.text = dialogue_list[dialogue_index].split('|')[0]
 			var time = 3
-			if dialogue_list[dialogue_index].size() > 1:
-				time = dialogue_list[dialogue_index][1]
-			tween_visible_ratio(rich_text_label, time, 0)
+			var arcadeThing = false
+			if dialogue_list[dialogue_index].split('|').size() > 1:
+				time = dialogue_list[dialogue_index].split('|')[1].to_float()
+			else:
+				if dialogue_list[dialogue_index].split('|')[0] == 'arcade.open':
+					arcadeThing = true
+			if not arcadeThing:
+				tween_visible_ratio(rich_text_label, time, 0)
+			else:
+				rich_text_label.text = ''
+				closeDialogue()
+				print("switch to emulator")
 		else:
-			textbar.visible = false
-			dialogue_index = -1
+			closeDialogue()
+			
+func closeDialogue():
+	textbar.visible = false
+	dialogue_index = -1
+	if tween and tween.is_running():
+		tween.stop()
+	typing_sound.stop()
 
 func _on_area_entered(area):
 	if area == area_2d:
@@ -46,11 +64,7 @@ func _on_area_exited(area):
 		player_interacting = false
 		
 		if textbar.visible:
-			textbar.visible = false
-			dialogue_index = -1
-			if tween and tween.is_running():
-				tween.stop()
-			typing_sound.stop()
+			closeDialogue()
 
 var tween
 
@@ -88,3 +102,12 @@ func call_timer(time = 10, endfunc = Callable(self, "")):
 	add_child(timer)
 	timer.start()
 	timer.timeout.connect(endfunc)
+
+func save_to_file(path, content):
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(content)
+
+func load_from_file(path):
+	var file = FileAccess.open(path, FileAccess.READ)
+	var content = file.get_as_text()
+	return content

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8gtc1opotxf2"]
+
+[ext_resource type="PackedScene" uid="uid://8nmvrc0fg7b4" path="res://entities/interactableNPC.tscn" id="1_fng6m"]
+[ext_resource type="Texture2D" uid="uid://c24wt6nedmr4q" path="res://assets/images/tile.png" id="2_fng6m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33hfi"]
+atlas = ExtResource("2_fng6m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvjb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33hfi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbjjg"]
+size = Vector2(48, 32)
+
+[node name="Interactable" instance=ExtResource("1_fng6m")]
+scale = Vector2(1, 1)
+
+[node name="Asset" type="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_yvjb7")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_wbjjg")

@@ -6,3 +6,4 @@
 ### Added
 - World tilemap
 - Interactable NPCS
+- Interactions
