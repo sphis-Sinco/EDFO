@@ -3,7 +3,7 @@ extends Area2D
 @export var textbar : ColorRect
 @export var rich_text_label : RichTextLabel
 @export var area_2d : Area2D
-@onready var typing_sound = $"../AudioStreamPlayer2D"
+@export var typing_sound : AudioStreamPlayer2D
 
 var dialogue_list = [
 	["dialogue", 3]
@@ -15,7 +15,7 @@ var dialogue_index = -1
 func _ready():
 	connect("area_entered", _on_area_entered)
 	connect("area_exited", _on_area_exited)
-	dialogue_list = load_from_file( 'assets/dialogue/'+dialogue_path+'.txt').split('\n')
+	dialogue_list = load_from_file('assets/dialogue/'+dialogue_path+'.txt').split('\n')
 	print_rich(dialogue_list)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,16 +31,22 @@ func _input(event):
 			textbar.visible = true
 			rich_text_label.text = dialogue_list[dialogue_index].split('|')[0]
 			var time = 3
-			var arcadeThing = false
+			var dialogue_event
 			if dialogue_list[dialogue_index].split('|').size() > 1:
 				time = dialogue_list[dialogue_index].split('|')[1].to_float()
 			else:
-				if dialogue_list[dialogue_index].split('|')[0] == 'arcade.open':
-					arcadeThing = true
-			if not arcadeThing:
+				if dialogue_list[dialogue_index].split('|')[0] == 'open.terminal':
+					# dialogue_event = 'startTerminal'
+					pass
+				elif dialogue_list[dialogue_index].split('|')[0] == 'arcade.open':
+					dialogue_event = 'startArcade'
+			if not dialogue_event:
 				tween_visible_ratio(rich_text_label, time, 0)
-			else:
-				rich_text_label.text = ''
+			# elif dialogue_event == 'startTerminal':
+				# closeDialogue()
+				# print("switch to terminal")
+				# get_tree().change_scene_to_file("res://scenes/EDFT.tscn")
+			elif dialogue_event == 'startArcade':
 				closeDialogue()
 				print("switch to emulator")
 				get_tree().change_scene_to_file("res://scenes/monitor.tscn")
@@ -48,11 +54,13 @@ func _input(event):
 			closeDialogue()
 			
 func closeDialogue():
+	rich_text_label.text = ''
 	textbar.visible = false
 	dialogue_index = -1
 	if tween and tween.is_running():
 		tween.stop()
-	typing_sound.stop()
+	if typing_sound:
+		typing_sound.stop()
 
 func _on_area_entered(area):
 	if area == area_2d:
