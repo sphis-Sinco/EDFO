@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://crlq76h5rj6ru"]
+
+[ext_resource type="PackedScene" uid="uid://8nmvrc0fg7b4" path="res://entities/interactableNPC.tscn" id="1_5owt2"]
+[ext_resource type="Texture2D" uid="uid://bjryvdxf6xltg" path="res://assets/images/employee.png" id="2_wbjjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mfnp"]
+atlas = ExtResource("2_wbjjg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvjb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mfnp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbjjg"]
+size = Vector2(64, 64)
+
+[node name="Interactable" instance=ExtResource("1_5owt2")]
+scale = Vector2(1, 1)
+
+[node name="Asset" type="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_yvjb7")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_wbjjg")

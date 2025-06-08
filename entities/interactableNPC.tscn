@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://8nmvrc0fg7b4"]
+
+[ext_resource type="Script" uid="uid://c85ktosb0fqke" path="res://assets/scripts/interactable_npc.gd" id="1_syfnu"]
+[ext_resource type="AudioStream" uid="uid://dx2tya565wd1v" path="res://assets/sounds/video-game-text-330163.mp3" id="2_syfnu"]
+
+[node name="Interactable" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_syfnu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_syfnu")

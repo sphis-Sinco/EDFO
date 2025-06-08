@@ -5,3 +5,4 @@
 ## [1.0.0] - 2025-06-07
 ### Added
 - World tilemap
+- Interactable NPS
